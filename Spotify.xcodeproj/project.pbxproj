@@ -77,8 +77,6 @@
 				1864A1EB2E59025E00715FBF /* Spotify */,
 			);
 			name = Spotify;
-			packageProductDependencies = (
-			);
 			productName = Spotify;
 			productReference = 1864A1E92E59025E00715FBF /* Spotify.app */;
 			productType = "com.apple.product-type.application";
