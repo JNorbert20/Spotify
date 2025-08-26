@@ -1,11 +1,10 @@
+platform :ios, '15.6'
 
-platform :ios, '13.0'
+use_modular_headers!
 
 target 'Spotify' do
-  use_frameworks!
 
   pod 'SDWebImage'
+  pod 'Appirater'
   pod 'Firebase/Analytics'
-  pod 'SpotifyiOS'
-
 end
