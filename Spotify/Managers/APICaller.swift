@@ -41,6 +41,42 @@ final class APICaller {
         }
     }
     
+    public func getNewReleaseas(completion: @escaping ((Result<NewReleasesResponse, Error>)) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/new-releases?limit=50"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(NewReleasesResponse.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    public func getFeauturedPlaylists(completion: @escaping ((Result<String, Error>) -> Void)) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/featured-playlists?limit=2"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) {data, _, error in
+                guard let data = data, error == nil else {
+                    return
+                }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(json)
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
     enum HTTPMethod: String {
         case GET
         case POST
